@@ -24,7 +24,8 @@
 </head>
 
 <body>
-<div class="container" id="aindex">
+<div id="ifavm">
+<div class="container">
     <div class="row clearfix" >
         <div class="col-md-12 column">
             <nav class="navbar navbar-default" role="navigation">
@@ -92,44 +93,24 @@
                         <a href="#">2020</a>
                     </li>
                     <li class="active">十二月</li>
-                    <li class="active">{{province}}</li>
-                    <li class="active">{{city}}</li>
+                    <li class="active">{{province}}{{city}}</li>
+                    <li class="active">气温：{{weatherCondition.AirTemperature}}&nbsp;天气：<img class="img_weather" :src="'weather/'+weatherFutureList[0].p1">&nbsp;<img v-bind:src="'weather/'+weatherFutureList[0].p2" class="img_weather"></li>
                 </ul>
                 <!--
                     <div v-for="item,index in subjects">
                     {{ index }} {{ item }}
                 </div>
                 -->
+
                 <div data-spy="scroll" class="nav-tabs" data-target="#navbar-example" data-offset="0" style="height:560px;overflow:auto; position: relative;">
 
-<!--                    <div  id="div" v-for="item in favs" :key="index" >-->
-<!--                        <img  style="margin-left: 15px;" src="img/baidu.jpg">-->
-<!--                        <div id="describe">-->
-<!--                            <p >{{item.mfdesc}}</p>-->
-<!--                        </div>-->
-<!--                        <div id="maintitle">-->
-<!--                            <a v-bind:href="item.mfurl" id="incoll1">{{item.mfname}}</a>-->
-<!--                        </div>-->
-
-<!--                        <div id="starmod">-->
-<!--                            <input type="checkbox" id="fav-btn" >-->
-<!--                            <label for="fav-btn" >-->
-<!--                                <svg id="star" t="1562567183725" class="icon" viewBox="0 0 1100 850" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1976" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">-->
-<!--                                    <path d="M956 398.496q-8-23.488-26.496-39.008t-42.496-19.488l-204.992-31.008-92-195.008q-11.008-24-32.992-36.992Q536.032 64 512.032 64t-44.992 12.992q-22.016 12.992-32.992 36.992l-92 195.008-204.992 31.008q-24 4-42.496 19.488t-26.496 39.008-2.496 47.008 22.496 41.504l151.008 154.016-36 218.016q-6.016 40 20 70.496t66.016 30.496q22.016 0 42.016-11.008l180.992-100 180.992 100q20 11.008 42.016 11.008 40 0 66.016-30.496t20-70.496l-36-218.016 151.008-154.016q16.992-18.016 22.496-41.504t-2.496-47.008z" p-id="1977"></path>-->
-<!--                                </svg>-->
-<!--                            </label>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-
-
-                    <div  id="div" v-for="(item,index) in Newitems" :key="index" >
-                        <img  style="margin-left: 15px;" src="img/baidu.jpg">
+                    <div  id="div" v-for="item in favs" >
+                        <img  style="margin-left: 15px;" v-bind:src="item.pic">
                         <div id="describe">
                             <p >{{item.mfdesc}}</p>
                         </div>
                         <div id="maintitle">
-                            <a v-bind:href="item.mfurl" id="incoll1">{{item.name}}</a>
+                            <a v-bind:href="item.mfurl" id="incoll1">{{item.mfname}}</a>
                         </div>
 
                         <div id="starmod">
@@ -144,9 +125,32 @@
                     </div>
 
 
+<!--                    <div  id="div" v-for="(item,index) in Newitems" :key="index" >-->
+<!--                        <img  style="margin-left: 15px;" src="img/baidu.jpg">-->
+<!--                        <div id="describe">-->
+<!--                            <p >{{item.mfdesc}}</p>-->
+<!--                        </div>-->
+<!--                        <div id="maintitle">-->
+<!--                            <a v-bind:href="item.mfurl" id="incoll1">{{item.name}}</a>-->
+<!--                        </div>-->
+
+<!--                        <div id="starmod">-->
+<!--                            <input type="checkbox" id="fav-btn" >-->
+<!--                            <label for="fav-btn" >-->
+<!--                                <svg id="star" t="1562567183725" class="icon" viewBox="0 0 1100 850" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1976" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">-->
+<!--                                    <path d="M956 398.496q-8-23.488-26.496-39.008t-42.496-19.488l-204.992-31.008-92-195.008q-11.008-24-32.992-36.992Q536.032 64 512.032 64t-44.992 12.992q-22.016 12.992-32.992 36.992l-92 195.008-204.992 31.008q-24 4-42.496 19.488t-26.496 39.008-2.496 47.008 22.496 41.504l151.008 154.016-36 218.016q-6.016 40 20 70.496t66.016 30.496q22.016 0 42.016-11.008l180.992-100 180.992 100q20 11.008 42.016 11.008 40 0 66.016-30.496t20-70.496l-36-218.016 151.008-154.016q16.992-18.016 22.496-41.504t-2.496-47.008z" p-id="1977"></path>-->
+<!--                                </svg>-->
+<!--                            </label>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+
+
 
                 </div>
+            </nav>
         </div>
+
     </div>
 </div>
 
@@ -158,40 +162,40 @@
                 <h3 class="modal-title" style="position: absolute; margin-top: 1%;"> <i data-feather="plus"></i>
                     添加收藏
                 </h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+
                     <div class="form-group">
                         <label for="group_name" class="col-form-label">收藏名</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="group_name">
+                            <input v-model="mfname" type="text" class="form-control" id="group_name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="group_name" class="col-form-label">网址链接</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="group_name">
+                            <input v-model="mfurl" type="text" class="form-control" id="group_name">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="description" class="col-form-label">描述</label>
-                        <textarea class="form-control" id="description"></textarea>
+                        <textarea v-model="mfdesc" class="form-control" id="description"></textarea>
                     </div>
-                </form>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">创建</button>
+                <input type="button" @click="addFav" class="btn btn-primary">创建</input>
             </div>
         </div>
     </div>
 </div>
 
 <div id="fade" class="box_2"></div>
-
+</div>
 <footer>
 
     <center>
@@ -219,19 +223,21 @@
     var hash=window.location.hash;
     var muid = hash.replace("#", '');
     var vm = new Vue({
-        el: '#aindex',
+        el: '#ifavm',
         data: {
             searchData:"",
-            province: "",
-            city: "",
+            province: "湖南",
+            city: "衡阳",
             temperature:"",
             weatherImage:"",
-            favs:[],
+            favs:[{name:''}],
             muid:muid,
-            mfname:"",
-            mfdesc:"",
-            mfurl:"",
+            mfname:null,
+            mfdesc:null,
+            mfurl:null,
             mid:null,
+            weatherCondition:null,
+            weatherFutureList:null,
 
             test:[{name:"000000",mfdesc:"张小四很帅，老郭很酷",mfurl:"https://www.baidu.com/"},
                 {name:"000000"},{name:"000000"},
@@ -256,11 +262,12 @@
             this.findByMuid(this.muid);
         },
         computed:{
+
             Newitems: function(){
-                alert("我是computed")
                 var _this = this;
                 var Newitems = [];
-                _this.test.map(function(item){
+                _this.favs.map(function(item){
+                    alert(item.data);
                     if(item.name.search(_this.searchData)!=-1){
                         Newitems.push(item);
                     }
@@ -272,14 +279,21 @@
         methods: {
             addFav: function(){
                 var self=this;
+                if(self.mfname==null || self.mfdesc==null || self.mfurl== null){
+                    alert("不能有空白数据！")
+                    return;
+                }
                 $.ajax({
                     type:"POST",
                     url:"/myfav/add",
-                    data:{muid:this.muid,mfname:self.mfname,mfurl:self.mfurl,mfdesc:self.mfdesc},
+                    data:{muid:self.muid,mfname:self.mfname,mfurl:self.mfurl,mfdesc:self.mfdesc},
                     dataType:"json",
                     success:function(result){
                         if(result.code==1){
                             alert(result.data);
+                            self.mfurl=null;
+                            self.mfname=null;
+                            self.mfdesc=null;
                             window.location.href="index.html";
                         }else{
                             alert("添加失败")
@@ -313,22 +327,24 @@
                     if(this.getStatus() == BMAP_STATUS_SUCCESS) {
                         var province = r.address.province; //返回当前省份
                         var city = r.address.city; //返回当前城市
+                        province=province.replace('省','');
+                        city=city.replace('市','');
                         self.province = province;
                         self.city = city;
                         console.log(province + "," + city)
-                        var _this=this;
                         $.ajax({
                             type: "POST",
-                            url: "/weather/",
+                            url: "/weather/getWeather",
                             data: {
-                                province:this.province,
-                                city:this.city
+                                province:self.province,
+                                city:self.city
                             },
                             dataType: "json",
                             success: function(result) {
                                 if(result.code == 1) {
-                                    //self.temperature=result.
-                                    //self.weatherImage=result
+                                    self.weatherCondition=result.data.weatherCondition;
+                                    self.weatherFutureList=result.data.weatherFutureList;
+                                    console.log(result.data);
                                 }
                             }
                         });
@@ -338,22 +354,25 @@
             //根据muid查询
             findByMuid: function(muid){
                 var self=this;
-
+                if(muid==null){
+                    alert("请先登录！！");
+                }
                 $.ajax({
                     type:"POST",
                     url:"/myfav/findById",
                     data:{muid:this.muid},
                     dataType:"json",
                     success:function(result){
-
+                        console.log(result);
                         if(result.code==1){
-                            this.test=result.data;
-                            console.log(this.favs)
+                            self.favs=result.data;
+                            console.log(self.favs)
                         }else{
                             alert("请登录");
                         }
                     }
-                })
+                });
+
             }
         }
     });
